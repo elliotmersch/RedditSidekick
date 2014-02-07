@@ -89,7 +89,7 @@ $( document ).ready(function() {
 							var comment = item.data.body
 							var commauthor = item.data.author
 							var postcomment = '<p>[Author]' + commauthor + '<br>' + comment + '</p>'
-							$("#result-tbody").next(".result-content").append(postcomment).hide()
+							$("#result-tbody").next(".result-content").append(postcomment).hide();
 					}); //end comment each
 				}); //end comment getJSON	
 
