@@ -6,7 +6,6 @@ $( document ).ready(function() {
 
 	$(".search-type").each(function(){
 		$(this).click(function () {
-			//alert("I want to search with type: " + $(this).text().toLowerCase());
 			redditsearch($(this).text().toLowerCase());
 		});
 	});
@@ -23,11 +22,16 @@ $( document ).ready(function() {
 			redditsearch("relevance");
 		}
 	});
+	
+	$(".result").delegate("click", function(){
+		alert("I clicked a title tr");
+		$(this).next().toggle();
+	});
 
 
 	function redditsearch(type) {
 		var query = $("#query").val();
-		$('#results').append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-body'})));
+		$('#results').append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
 		//$("#results").html("");
 
 		$.getJSON("http://www.reddit.com/search.json?q=" + query + "&t=" + time + "&sort=" + type, function (data) {
@@ -64,11 +68,17 @@ $( document ).ready(function() {
 				}
 
 			   // var selftextpost = '<p style="display: none">' + selftext + '</p><hr size="1" width ="98%" noshade>'
-				//var post = '<div style="font-size:14px">' + '<a href="' + url + '" target="_blank">' + title + '</a>' + '</div>'
-				
-				//var post = '<tr>' + '<td><a href="' + url + '" target="_blank">' + title + '</a></td></tr>';
-
-				$("#result-body").append($("<tr/>", {id: 'result'}).append($("<td/>").append($("<a/>", {href: url, text: title}))));
+				$("#result-tbody").append(
+											$("<tr/>", {class: 'result'}).append(
+												$("<td/>").append(
+													$("<a/>", {href: url, text: title})
+												)
+											)
+										).append(
+											$("<div/>", {class: 'result-content'}).append(
+												selftext
+											).hide()
+										);
 				   // var showhide = $('<a class="showhide">+ Show Post</a>');
 				   // results.append(showhide);
 				   // $(showhide).click(function() {
