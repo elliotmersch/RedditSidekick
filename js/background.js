@@ -23,12 +23,6 @@ $( document ).ready(function() {
 		}
 	});
 	
-	$(".result").delegate("click", function(){
-		alert("I clicked a title tr");
-		$(this).next().toggle();
-	});
-
-
 	function redditsearch(type) {
 		var query = $("#query").val();
 		$('#results').append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
@@ -66,8 +60,7 @@ $( document ).ready(function() {
 					}
 					
 				}
-
-			   // var selftextpost = '<p style="display: none">' + selftext + '</p><hr size="1" width ="98%" noshade>'
+				
 				$("#result-tbody").append(
 											$("<tr/>", {class: 'result'}).append(
 												$("<td/>").append(
@@ -78,20 +71,12 @@ $( document ).ready(function() {
 											$("<div/>", {class: 'result-content'}).append(
 												selftext
 											).hide()
-										);
-				   // var showhide = $('<a class="showhide">+ Show Post</a>');
-				   // results.append(showhide);
-				   // $(showhide).click(function() {
-						
-					 //   if($(this).text() == '- Hide Post'){
-					   //     $(this).text('+ Show Post');
-					   // }else{
-						 //   $(this).text('- Hide Post');
-					   // }
-				   // $(this).next().toggle();
-				   // });  
-					//results.append(selftextpost + "</td>");
-				 
+				);
+
+				$(".result").click(function(){
+					$(this).next('div').toggle();
+				});
+				
 				i++;
 			});
 		});
