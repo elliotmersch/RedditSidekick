@@ -1,9 +1,9 @@
 $( document ).ready(function() {
 
 	var container = $('#site-content')
-	var time = "all"
-
-
+	var time = times[0];
+	var times = ["all", "hour", "day", "week", "month", "year"];
+	
 	$(".search-type").each(function(){
 		$(this).click(function () {
 			redditsearch($(this).text().toLowerCase());
@@ -13,6 +13,7 @@ $( document ).ready(function() {
 	$(".time-type").each(function(){
 		$(this).click(function() {
 			time = $(this).text().toLowerCase();
+			time_dropdown(time);
 		});
 	});
 
@@ -26,6 +27,20 @@ $( document ).ready(function() {
 	$(document).on('click', ".result", function(){
 		$(this).next('.result-content').slideToggle();
 	});
+	
+	function time_dropdown(selected){
+		var td = $("#time-dropdown");
+		td.empty();
+		for(var i=0; i<times.length; i++){
+			if(i == 0){
+				td.append($('<li/>'));
+				td.append($('<li/>', {class:divider}));
+			}
+			if(times[i] != selected)
+				td.append($('<li/>').append($('<a/>', {class: "time-type", href: "#").text(times[i])));
+			}
+		}
+	}
 			
 	function redditsearch(type) {
 		var query = $("#query").val();
