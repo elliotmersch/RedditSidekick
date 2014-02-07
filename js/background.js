@@ -2,28 +2,35 @@ $( document ).ready(function() {
 
 var container = $('#site-content')
 var results = $('#results')
+var time = "all"
 
 
-$("#buttonsearch").click(function () {
-    redditsearch();
+$(".search-type").each(function(){
+	$(this).click(function () {
+		//alert("I want to search with type: " + $(this).text().toLowerCase());
+		redditsearch($(this).text().toLowerCase());
+	});
+});
+
+$(".time-type").each(function(){
+	$(this).click(function() {
+		time = $(this).text();
+	});
 });
 
 $("#query").keypress(function (e) {
     if (e.which == 13) {
         e.preventDefault();
-        redditsearch();
+        redditsearch("relevance");
     }
 });
 
 
-function redditsearch() {
+function redditsearch(type) {
     var query = $("#query").val();
-    var type = document.getElementById('typeselect');
-    var time = $('input[name="time"]:checked').val();
-    var val = type.options[type.selectedIndex].value;
     $("#results").html("");
 
-    $.getJSON("http://www.reddit.com/search.json?q=" + query + "&sort=" + val + "&t=" + time, function (data) {
+    $.getJSON("http://www.reddit.com/search.json?q=" + query + "&t=" + time + "&sort=" + type, function (data) {
 
         var i = 0
         $.each(data.data.children, function (i, item) {

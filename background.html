@@ -2,81 +2,47 @@
  <html>
  <head>
  <title>Reddit Sidekick</title>
- <style>
- body{
-    min-width: 357px;
-	overflow-y: visible;
-    font-family: ‘Arial Narrow’, sans-serif;
-}
 
-#buttonsearch {
-    width: 75px;
-}
-#site-content {
-    text-align: center;
-}
-#results {
-    max-width: 400px;
-    word-wrap: break-word;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 12px;
-	overflow-y: auto;
-
-}
-
-::-webkit-scrollbar-track-piece  {
-background-color: #C2D2E4;
-}
-
-a{
-    color: black; 
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:visited {
-    color: black
-}
-
-#hider{
- width: 80px;
- height: 22px;
-    
-}
- </style>
- <!--<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+ <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
  <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
- <link href="css/custom.css" rel="stylesheet" media="screen"> -->
+ <link href="css/custom.css" rel="stylesheet" media="screen">
  <script src="js/jquery.min.js"></script>
- <!--<script src="js/bootstrap.min.js"></script>-->
+ <script src="js/bootstrap.min.js"></script>
  <script src="js/background.js"></script>
  </head>
  <body>
  
- <div id="site-content">
-    <form name="RedditSearch" method="post"><b>Reddit Sidekick</b>
 
-        <p />
-        <input type="radio" name="time" value="all" checked>All &nbsp;
-        <input type="radio" name="time" value="year">Year &nbsp;
-        <input type="radio" name="time" value="month">Month &nbsp;
-        <input type="radio" name="time" value="week">Week &nbsp;
-        <input type="radio" name="time" value="day">Day &nbsp;
-        <br>
-        <select id="typeselect">
-            <option value="relevance">Relevance</option>
-            <option value="new">New</option>
-            <option value="top">Top</option>
-            <option value="hot">Hot</option>
-        </select>
-        <input type="text" id="query" size="10" />
-        <input type="button" id="buttonsearch" value="Search" /><br>
-    </form>
-    <div id="results"></div>
-</div>
- 
- 
+<div id="site-content">
+	<form class="navbar-form navbar-left" role="search">
+	  <!-- top input bar -->
+	  <div class="form-group">
+		<div class="input-group">
+			<div class="input-group-btn">
+				<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="time-type" href="#">all</a></li>
+					<li><a class="time-type" href="#">hour</a></li>
+					<li><a class="time-type" href="#">day</a></li>
+					<li><a class="time-type" href="#">week</a></li>
+					<li><a class="time-type" href="#">month</a></li>
+					<li><a class="time-type" href="#">year</a></li>
+				</ul>
+			</div>
+			<input type="text" class="form-control" id="query" placeholder="reddit sidekick">
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-primary dropdown-toggle" id="search-btn" data-toggle="dropdown">Search <span class="caret"></span></button>
+				<ul class="dropdown-menu pull-right">
+					<li><a class="search-type" href="#">relevance</a></li>
+					<li><a class="search-type" href="#">hot</a></li>
+					<li><a class="search-type" href="#">top</a></li>
+					<li><a class="search-type" href="#">new</a></li>
+				</ul>
+			</div><!-- /btn-group -->
+		</div><!-- /input-group -->
+	  </div><!-- /top input bar -->
+	</form>
+	<div id="results"></div>
+</div> 
  </body>
  </html>
