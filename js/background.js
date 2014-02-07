@@ -12,7 +12,7 @@ $( document ).ready(function() {
 
 	$(".time-type").each(function(){
 		$(this).click(function() {
-			time = $(this).text();
+			time = $(this).text().toLowerCase();
 		});
 	});
 
@@ -29,7 +29,7 @@ $( document ).ready(function() {
 			
 	function redditsearch(type) {
 		var query = $("#query").val();
-		$('#results').append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
+		$('#results').empty().append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
 
 		$.getJSON("http://www.reddit.com/search.json?q=" + query + "&t=" + time + "&sort=" + type, function (data) {
 
