@@ -69,7 +69,16 @@ $( document ).ready(function() {
 					
 				}
 				
-				var fullpost = '<p class="postinfo">by <a href="http://reddit.com/u/' + author + '" target="_blank">' + author + '</a> in <a href="http://reddit.com/r/' + subreddit + '" target="_blank">/r/' + subreddit + '</a><br></p>' + selftext						
+				var fullpost = '<p class="postinfo">by <a href="http://reddit.com/u/' + author + '" target="_blank">' + author + '</a> in <a href="http://reddit.com/r/' + subreddit + '" target="_blank">/r/' + subreddit + '</a><br></p>' + selftext		
+				
+				var postcomment = "<p>test</p>";
+				$.getJSON("http://www.reddit.com/r/" + subreddit + "/comments/" + id + ".json?&limit=5", function (data) { 
+					$.each(data[1].data.children, function (i, item) {
+							var comment = item.data.body
+							var commauthor = item.data.author
+							//postcomment += '<p>[Author]' + commauthor + '<br>' + comment + '</p>'
+					}); //end comment each
+				}); //end comment getJSON					
 				
 				$("#result-tbody").append(
 											$("<tr/>", {class: 'result'}).append(
@@ -80,19 +89,9 @@ $( document ).ready(function() {
 										).append(
 											$("<div/>", {class: 'result-content'}).append(
 												fullpost
-											).hide()
+											).hide().append(postcomment).hide()
 										);
 				i++;
-				
-				$.getJSON("http://www.reddit.com/r/" + subreddit + "/comments/" + id + ".json?&limit=5", function (data) { 
-					$.each(data[1].data.children, function (i, item) {
-							var comment = item.data.body
-							var commauthor = item.data.author
-							var postcomment = '<p>[Author]' + commauthor + '<br>' + comment + '</p>'
-							$("#result-tbody").next(".result-content").append(postcomment).hide()
-					}); //end comment each
-				}); //end comment getJSON	
-
 			});
 		});
 	};
