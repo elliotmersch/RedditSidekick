@@ -10,7 +10,7 @@
 	"default_popup": "background.html"
   },
   "content_scripts": [ {
-    "js": [ "jquery.min.js", "background.js" ],
+    "js": [ "js/jquery.min.js", "js/background.js" ],
     "matches": [ "http://*/*", "https://*/*"]
   }]
 }
