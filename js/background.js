@@ -23,6 +23,10 @@ $( document ).ready(function() {
 		}
 	});
 	
+	$(document).on('click', ".result", function(){
+		$(this).next('.result-content').toggle();
+	});
+			
 	function redditsearch(type) {
 		var query = $("#query").val();
 		$('#results').append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
@@ -72,11 +76,6 @@ $( document ).ready(function() {
 												selftext
 											).hide()
 				);
-
-				$(".result").click(function(){
-					$(this).next('div').toggle();
-				});
-				
 				i++;
 			});
 		});
