@@ -67,14 +67,14 @@ function redditsearch(type) {
             var post = '<div style="font-size:14px">' + '<a href="' + url + '" target="_blank">' + title + '</a>' + '</div>'
 
                 results.append(post)
-                var showhide = $('<input type="button" id="hider" value="Show"></input>');
+                var showhide = $('<a class="showhide">+ Show Post</a>');
                 results.append(showhide);
                 $(showhide).click(function() {
                     
-                    if($(this).val() == 'Hide'){
-                        $(this).val('Show');
+                    if($(this).text() == '- Hide Post'){
+                        $(this).text('+ Show Post');
                     }else{
-                        $(this).val('Hide');
+                        $(this).text('- Hide Post');
                     }
                 $(this).next().toggle();
                 });  
