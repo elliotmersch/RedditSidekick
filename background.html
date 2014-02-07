@@ -1,0 +1,78 @@
+<!doctype html>
+ <html>
+ <head>
+ <title>Reddit Sidekick</title>
+ <style>
+ body{
+    min-width: 357px;
+	overflow-y: visible;
+    font-family: ‘Arial Narrow’, sans-serif;
+}
+
+#buttonsearch {
+    width: 75px;
+}
+#site-content {
+    text-align: center;
+}
+#results {
+    max-width: 400px;
+    word-wrap: break-word;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+	overflow-y: auto;
+
+}
+
+::-webkit-scrollbar-track-piece  {
+background-color: #C2D2E4;
+}
+
+a{
+    color: black; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:visited {
+    color: black
+}
+
+#hider{
+ width: 80px;
+ height: 22px;
+    
+}
+ </style>
+ <script src="jquery.min.js"></script>
+ <script src="background.js"></script>
+ </head>
+ <body>
+ 
+ <div id="site-content">
+    <form name="RedditSearch" method="post"><b>Reddit Sidekick</b>
+
+        <p />
+        <input type="radio" name="time" value="all" checked>All &nbsp;
+        <input type="radio" name="time" value="year">Year &nbsp;
+        <input type="radio" name="time" value="month">Month &nbsp;
+        <input type="radio" name="time" value="week">Week &nbsp;
+        <input type="radio" name="time" value="day">Day &nbsp;
+        <br>
+        <select id="typeselect">
+            <option value="relevance">Relevance</option>
+            <option value="new">New</option>
+            <option value="top">Top</option>
+            <option value="hot">Hot</option>
+        </select>
+        <input type="text" id="query" size="10" />
+        <input type="button" id="buttonsearch" value="Search" /><br>
+    </form>
+    <div id="results"></div>
+</div>
+ 
+ 
+ </body>
+ </html>
