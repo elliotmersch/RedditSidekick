@@ -69,12 +69,12 @@ $( document ).ready(function() {
 					
 				}
 				
-				var fullpost = '<p class="postinfo">by <a href="http://reddit.com/u/' + author + '">' + author + '</a> in <a href="http://reddit.com/r/' + subreddit + '">/r/' + subreddit + '</a><br></p>' + selftext
+				var fullpost = '<p class="postinfo">by <a href="http://reddit.com/u/' + author + '" target="_blank">' + author + '</a> in <a href="http://reddit.com/r/' + subreddit + '" target="_blank">/r/' + subreddit + '</a><br></p>' + selftext
 				
 				$("#result-tbody").append(
 											$("<tr/>", {class: 'result'}).append(
 												$("<td/>").append(
-													$("<a/>", {href: url, text: title})
+													$("<a/>", {href: url, target: "_blank", text: title})
 												)
 											)
 										).append(
