@@ -1,26 +1,40 @@
 $( document ).ready(function() {
 
 	var container = $('#site-content')
-	var time = times[0];
-	var times = ["all", "hour", "day", "week", "month", "year"];
+	var time = "all";
+	var sort = "relevance";
 	
-	$(".search-type").each(function(){
-		$(this).click(function () {
-			redditsearch($(this).text().toLowerCase());
-		});
+	var sort_types = ["relevance", "hot", "top", "new"];
+	
+	var times_map = {
+		"all time":"all",
+		"this hour":"hour",
+		"this day":"day",
+		"this week":"week",
+		"this month":"month",
+		"this year":"year"
+	};
+	function find_key(value){
+		for(var key in times_map){
+			if (times_map[key] == value) {return key};
+		}
+	}
+	
+	$(document).on('click', ".search-type", function(){
+		sort = ($(this).text().toLowerCase());
+		sort_dropdown();
+		redditsearch();
 	});
 
-	$(".time-type").each(function(){
-		$(this).click(function() {
-			time = $(this).text().toLowerCase();
-			time_dropdown(time);
-		});
+	$(document).on('click', ".time-type", function(){
+		time = times_map[$(this).text().toLowerCase()];
+		time_dropdown(time);
 	});
 
 	$("#query").keypress(function (e) {
 		if (e.which == 13) {
 			e.preventDefault();
-			redditsearch("relevance");
+			redditsearch();
 		}
 	});
 	
@@ -28,25 +42,41 @@ $( document ).ready(function() {
 		$(this).next('.result-content').slideToggle();
 	});
 	
+	function sort_dropdown(){
+		var sd = $("#search-dropdown");
+		sd.empty();
+		for(var i=0; i<sort_types.length; i++){
+			if(i == 0){
+				sd.append($('<li/>').append($('<a/>', {class: "search-type", href: "#"}).text(sort)));
+				sd.append($('<li/>', {class:"divider"}));
+			}
+			if(sort_types[i] != sort){
+				sd.append($('<li/>').append($('<a/>', {class: "search-type", href: "#"}).text(sort_types[i])));
+			}
+		}
+	}
+	
 	function time_dropdown(selected){
 		var td = $("#time-dropdown");
 		td.empty();
-		for(var i=0; i<times.length; i++){
-			if(i == 0){
-				td.append($('<li/>'));
-				td.append($('<li/>', {class:divider}));
+		var first = true;
+		for(var key in times_map){
+			if(first){
+				td.append($('<li/>').append($('<a/>', {class: "time-type", href: "#"}).text(find_key(selected))));
+				td.append($('<li/>', {class:"divider"}));
+				first = false;
 			}
-			if(times[i] != selected)
-				td.append($('<li/>').append($('<a/>', {class: "time-type", href: "#").text(times[i])));
+			if(times_map[key] != selected){
+				td.append($('<li/>').append($('<a/>', {class: "time-type", href: "#"}).text(key)));
 			}
 		}
 	}
 			
-	function redditsearch(type) {
+	function redditsearch() {
 		var query = $("#query").val();
 		$('#results').empty().append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
 
-		$.getJSON("http://www.reddit.com/search.json?q=" + query + "&t=" + time + "&sort=" + type, function (data) {
+		$.getJSON("http://www.reddit.com/search.json?q=" + query + "&t=" + time + "&sort=" + sort, function (data) {
 
 			var i = 0
 			$.each(data.data.children, function (i, item) {
