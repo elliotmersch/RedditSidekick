@@ -92,8 +92,7 @@ $( document ).ready(function() {
 											).hide().append(postcomment).hide()
 										);
 				i++;
-<<<<<<< HEAD
-=======
+
 				
 				$.getJSON("http://www.reddit.com/r/" + subreddit + "/comments/" + id + ".json?&limit=5", function (data) { 
 					$.each(data[1].data.children, function (i, item) {
@@ -104,7 +103,7 @@ $( document ).ready(function() {
 					}); //end comment each
 				}); //end comment getJSON	
 
->>>>>>> 1b58a0f83904e52b8a7490399f24a485e97cfa77
+
 			});
 		});
 	};
