@@ -27,6 +27,10 @@ a{
 	text-align: center;
 }
 
+.result-content{
+	max-width: 495px;
+}
+
 /* Basic style tweaks */
 section { padding: 5px;}
 .navbar { margin-bottom: 2px; }
