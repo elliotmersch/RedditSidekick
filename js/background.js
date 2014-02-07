@@ -66,9 +66,9 @@ $( document ).ready(function() {
 			   // var selftextpost = '<p style="display: none">' + selftext + '</p><hr size="1" width ="98%" noshade>'
 				//var post = '<div style="font-size:14px">' + '<a href="' + url + '" target="_blank">' + title + '</a>' + '</div>'
 				
-				var post = '<tr>' + '<td><a href="' + url + '" target="_blank">' + title + '</a></td></tr>';
+				//var post = '<tr>' + '<td><a href="' + url + '" target="_blank">' + title + '</a></td></tr>';
 
-				$("#result-body").append(post);
+				$("#result-body").append($("<tr/>", {id: 'result'}).append($("<td/>").append($("<a/>", {href: url, text: title}))));
 				   // var showhide = $('<a class="showhide">+ Show Post</a>');
 				   // results.append(showhide);
 				   // $(showhide).click(function() {
