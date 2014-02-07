@@ -29,6 +29,7 @@ a{
 
 .result-content{
 	max-width: 495px;
+	word-wrap: break-word;
 }
 
 /* Basic style tweaks */
