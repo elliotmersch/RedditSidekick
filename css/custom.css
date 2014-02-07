@@ -27,6 +27,10 @@ a{
 	text-align: center;
 }
 
+p.postinfo{
+	font-size: 10px;
+}
+
 .result-content{
 	max-width: 495px; /*set max width of post content a little smaller so you can read letters that would otherwise get too close to edges*/
 	word-wrap: break-word;

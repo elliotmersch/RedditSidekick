@@ -39,7 +39,10 @@ $( document ).ready(function() {
 				var url = item.data.url
 				var id = item.data.id
 				var subid = item.data.subreddit_id
+				var subreddit = item.data.subreddit
 				var selftext = item.data.selftext
+				var author = item.data.author
+				
 
 				//check for imgur or youtube
 				if (selftext == "") {
@@ -62,7 +65,11 @@ $( document ).ready(function() {
 						selftext = '<a href="' + url + '" target="_blank">Youtube Video</a>'
 					}
 					
+					
+					
 				}
+				
+				var fullpost = '<p class="postinfo">by <a href="http://reddit.com/u/' + author + '">' + author + '</a> in <a href="http://reddit.com/r/' + subreddit + '">/r/' + subreddit + '</a><br></p>' + selftext
 				
 				$("#result-tbody").append(
 											$("<tr/>", {class: 'result'}).append(
@@ -72,7 +79,7 @@ $( document ).ready(function() {
 											)
 										).append(
 											$("<div/>", {class: 'result-content'}).append(
-												selftext
+												fullpost
 											).hide()
 				);
 				i++;
