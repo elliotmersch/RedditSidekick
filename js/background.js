@@ -24,13 +24,12 @@ $( document ).ready(function() {
 	});
 	
 	$(document).on('click', ".result", function(){
-		$(this).next('.result-content').toggle();
+		$(this).next('.result-content').slideToggle();
 	});
 			
 	function redditsearch(type) {
 		var query = $("#query").val();
 		$('#results').append($("<table/>", {class: 'table table-hover'}).append($("<tbody/>", {id: 'result-tbody'})));
-		//$("#results").html("");
 
 		$.getJSON("http://www.reddit.com/search.json?q=" + query + "&t=" + time + "&sort=" + type, function (data) {
 
